@@ -1,35 +1,30 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import React from 'react';
+import { Box, CssBaseline } from '@mui/material';
+import { MainDataTable } from './components/MainDataTable';
+import { FilterSidebar } from './components/FilterSidebar';
+import { data, filterFields } from './lib/data';
 
-function App() {
-  const [count, setCount] = useState(0);
-
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        <a href='https://vitejs.dev' target='_blank'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://react.dev' target='_blank'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Box
+      sx={{
+        display: 'flex',
+        height: '100vh',
+        m: '1rem auto',
+        width: '100vw',
+        padding: '2rem',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        border: '1px solid red'
+      }}
+    >
+      <CssBaseline />
+      <FilterSidebar filters={filterFields} />
+      <Box sx={{ flexGrow: 1, padding: '16px' }}>
+        <MainDataTable rows={data} />
+      </Box>
+    </Box>
   );
-}
+};
 
 export default App;
